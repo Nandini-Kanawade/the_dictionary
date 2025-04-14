@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Dictionary</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 2rem;
+      max-width: 700px;
+      margin-inline: auto;
+      color: #222;
+      background-color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #aaa;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    input[type="text"] {
+      font-family: 'Georgia', serif;
+      border: none;
+      border-bottom: 1px solid #000;
+      font-size: 1.1rem;
+      padding: 0.25rem 0.5rem;
+      background: transparent;
+      width: 200px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #666;
+    }
+
+    button {
+      display: none; /* hidden submit button */
+    }
+
+    .definition-box {
+      background-color: #ddd;
+      padding: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .footer a {
+      color: #333;
+      text-decoration: none;
+      margin-left: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>The Dictionary</h1>
+  <hr>
+
+  <form method="POST">
+    <label for="word">Enter your word</label>
+    <input type="text" name="word" id="word" value="{{ word }}" required>
+    <button type="submit">Search</button>
+  </form>
+
+  {% if definition %}
+  <div class="definition-box">
+    <p><strong>{{ definition.word }} {{ definition.phonetic }}</strong><br>
+    Part of speech: {{ definition.partOfSpeech }}<br>
+    Definition: {{ definition.definition }}</p>
+    {% if definition.example %}
+    <p><em>Example:</em> {{ definition.example }}</p>
+    {% endif %}
+  </div>
+  {% elif error %}
+  <p style="color:red; text-align:center;">{{ error }}</p>
+  {% endif %}
+
+  <div class="footer">
+    Built by <strong>Nandini K</strong> · 
+    <a href="https://github.com/Nandini-Kanawade" target="_blank">GitHub ↗</a>
+  </div>
+</body>
+</html>
